@@ -26,17 +26,17 @@ func createNumbersTable(db *sql.DB) {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     number INTEGER NOT NULL,
     contact_id INTEGER NOT NULL,
-    FOREIGNKEY(contact_id) REFERENCES contacts(id)
+    FOREIGN KEY(contact_id) REFERENCES contacts(id)
 );
   `
 	if _, err := db.Exec(cmd); err != nil {
-		log.Fatal("Error creating backups table: ", err.Error())
+		log.Fatal("Error creating numbers table: ", err.Error())
 	}
 }
 
 func createBackupTable(db *sql.DB) {
 	const cmd string = `
-  CREATE TABLE IF NOT EXISTS backup (
+  CREATE TABLE IF NOT EXISTS movarr_backup (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date INTEGER NOT NULL
 );
@@ -66,7 +66,7 @@ func createMessagesTable(db *sql.DB) {
     service_center TEXT,
     locked INTEGER NOT NULL,
     error_code INTEGER NOT NULL,
-    seen INTEGER NOT NULL,
+    seen INTEGER NOT NULL
   );
   `
 	if _, err := db.Exec(cmd); err != nil {
