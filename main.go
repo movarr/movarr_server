@@ -6,6 +6,7 @@ import (
 	routes "github.com/movarr/movarr_server/routes"
 )
 
+
 func main() {
 	database.InitialiseDatabase()
 	routes.HandleRoutes()

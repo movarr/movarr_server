@@ -1,15 +1,17 @@
 package database
 
 import (
+	"database/sql"
 	"fmt"
-	"github.com/glebarez/sqlite"
-	"gorm.io/gorm"
+	_ "github.com/glebarez/go-sqlite"
+	"log"
 )
 
 func InitialiseDatabase() {
 	fmt.Println("Initialising Database")
-	_, err := gorm.Open(sqlite.Open("movarrdb.db"), &gorm.Config{})
+	db, err := sql.Open("sqlite", "./movarrdb.db")
 	if err != nil {
-		fmt.Println("Error occured while creating database, " + err.Error())
+		log.Fatal("Cannot open database {}", err.Error())
 	}
+	CreateTables(db)
 }

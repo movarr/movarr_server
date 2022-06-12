@@ -6,3 +6,4 @@ type Contact struct {
 	LastName  string `json:"lastName"`
 	Numbers   []int  `json:"numbers"`
 }
+
